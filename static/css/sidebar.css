@@ -1,0 +1,99 @@
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background-color: #000000;
+    /* Dark background color */
+    color: #fff;
+    /* Light text color */
+    padding: 10px;
+    transition: width 0.3s;
+    /* Smooth width transition */
+}
+
+.sidebar-urls {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    /* Center items vertically */
+    margin: 0;
+    /* Remove default margin */
+    padding: 0;
+    /* Remove default padding */
+}
+
+.sidebar-urls a {
+    text-decoration: none;
+    color: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    /* Center items horizontally */
+}
+
+.sidebar-urls svg {
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 4px;
+    transition: transform 0.3s;
+    fill: white;
+}
+
+.sidebar-urls a:hover {
+    text-decoration: none;
+    color: #ff0000;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.sidebar-urls a.active {
+    font-weight: bold;
+}
+
+.sidebar-urls a p {
+    height: 20px;
+    width: auto;
+    line-height: 1.6;
+}
+
+/* Sidebar retract button */
+.retract-button {
+    background-color: #000000;
+    /* Dark background color */
+    color: #fff;
+    /* Light text color */
+    border: none;
+    cursor: pointer;
+    width: 25px;
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+    margin-right: 20px;
+}
+
+.subs {
+    margin-left: 25px;
+}
+
+.subs a {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.sub-downarrow {
+    margin-left: 10px;
+    width: 10px;
+    height: 10px;
+    fill: white;
+    transition: transform 0.3s;
+}
+
+/* Hide sidebar-urls on sidebar width 0 */
+@media screen and (max-width: 768px) {
+    .sidebar-urls {
+        display: none;
+    }
+}

@@ -1,0 +1,231 @@
+/* Reset some default styles for consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set background color and text color for the entire website */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #252525;
+    /* Light background color */
+}
+
+.content {
+    display: flex;
+    justify-content: start;
+    min-height: 100vh;
+}
+
+/* Container for video cards */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    padding: 20px;
+    width: 100%;
+}
+
+h1 {
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Video card styles */
+.content-card {
+    width: 350px;
+    height: 300px;
+    margin: 20px;
+    border: 1px solid #292929;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.content-card:hover {
+    transform: scale(1.03);
+    /* Enlarge on hover */
+}
+
+.content-card-image {
+    position: relative;
+}
+
+.content-card-image img {
+    object-fit: contain;
+    width: 100%;
+    height: 200px;
+    display: block;
+    transition: transform 0.2s;
+}
+
+.play-icon {
+    width: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: play-icon-pulse 2.3s ease infinite;
+    /* Add shadow to the svg */
+    filter: drop-shadow(0 0 0.75rem #000000);
+}
+
+#play-icon-path {
+    fill: #fff;
+}
+
+/* Play icon pulse animation */
+@keyframes play-icon-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.content-card-likes {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    filter: drop-shadow(0 0 0.75rem #000000);
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+.content-card-likes svg {
+    margin-top: 2px;
+    width: 20px;
+    height: 20px;
+    /* fill: #ffffff; */
+}
+
+.content-card-likes span {
+    margin-left: 5px;
+    margin-top: 5px;
+    color: #fff;
+}
+
+.content-card:hover .play-icon {
+    opacity: 1;
+}
+
+.content-card:hover .content-card-likes {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.content-card:hover .content-card-image .content-card-likes #like-icon-path {
+    fill: #ff0000 !important;
+}
+
+/* Video card title styles */
+.content-card-title {
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.content-card-title a {
+    text-decoration: none;
+    color: #fffcfc;
+    font-weight: bold;
+}
+
+/* Video card channel styles */
+.content-card-channel {
+    padding: 10px;
+    padding-top: 0;
+}
+
+.content-card-channel a {
+    text-decoration: none;
+    color: #777;
+}
+
+/* Add styles for the like counter and icon */
+.like-icon {
+    width: 20px;
+    height: 20px;
+    fill: #ffffff;
+    /* Color for the like icon */
+    margin-right: 5px;
+    /* Adjust as needed */
+    display: inline-block;
+}
+
+.like-counter {
+    color: #ff0000;
+    /* Color for the like counter text */
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 10px;
+    /* Adjust as needed */
+}
+
+/* Additional styles for other elements if needed */
+.content-card-info {
+    display: flex;
+    align-items: center;
+}
+
+/* Make responsive */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+
+    .content-card {
+        width: 150px;
+    }
+
+    .sidebar {
+        width: 0;
+    }
+}
+
+/* Add responsives ness for small screen laptop */
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 100%;
+    }
+
+    .content-card {
+        width: 150px;
+    }
+}
+
+/* Add responsives ness for small screen laptop */
+@media screen and (max-width: 1366px) {
+    .container {
+        width: 100%;
+    }
+
+    .content-card {
+        width: 250px;
+    }
+}
+
+/* Add responsives ness for small screen laptop */
+@media screen and (max-width: 1600px) {
+    .container {
+        width: 100%;
+    }
+
+    .content-card {
+        width: 250px;
+    }
+}

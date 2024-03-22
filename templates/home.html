@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Website</title>
+    <link href="/static/css/main.css" rel="stylesheet" />
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="content">
+        {% include 'sidebar.html' %}
+
+        <div class="container">
+            <!-- Add more content cards as needed -->
+            {% if request.path == "/" %}
+                {% for i in videos %}
+                    <div class="content-card">
+                        <div class="content-card-image">
+                            <a class="play-icon" href="/video?id={{ i.id }}">
+                                <svg id="play-icon" viewBox="0 0 32 32">
+                                    <g id="Layer_1" />
+                                    <g id="play_x5F_alt">
+                                        <path id="play-icon-path"
+                                            d="M16,0C7.164,0,0,7.164,0,16s7.164,16,16,16s16-7.164,16-16S24.836,0,16,0z M10,24V8l16.008,8L10,24z   "
+                                            style="fill:#ffffff;" />
+                                    </g>
+                                </svg>
+                            </a>
+                            <a href="/video?id={{ i.id }}"><img src="/{{ i.thumbnail }}" alt="" /></a>
+                        </div>
+                        <div class="content-card-title">
+                            <a href="/video?id={{ i.id }}">{{ i.title }}</a>
+                        </div>
+                        <div class="content-card-channel">
+                            <a>{{ i.user.name }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% elif request.path == "/liked/" %}
+                {% if likes is None %}
+                <h1>You have no liked videos</h1>
+                {% else %}
+                {% for i in likes %}
+                    <div class="content-card">
+                        <div class="content-card-image">
+                            <a class="play-icon" href="/video?id={{ i.video.id }}">
+                                <svg id="play-icon" viewBox="0 0 32 32">
+                                    <g id="Layer_1" />
+                                    <g id="play_x5F_alt">
+                                        <path id="play-icon-path"
+                                            d="M16,0C7.164,0,0,7.164,0,16s7.164,16,16,16s16-7.164,16-16S24.836,0,16,0z M10,24V8l16.008,8L10,24z   "
+                                            style="fill:#ffffff;" />
+                                    </g>
+                                </svg>
+                            </a>
+                            <a href="/video?id={{ i.video.id }}"><img src="/{{ i.video.thumbnail }}" alt="" /></a>
+                        </div>
+                        <div class="content-card-title">
+                            <a href="/video?id={{ i.video.id }}">{{ i.video.title }}</a>
+                        </div>
+                        <div class="content-card-channel">
+                            <a>{{ i.video.user.name }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            {% elif request.path == "/subscriptions/" %}
+                {% if subs is None %}
+                <h1>You have no subscriptions</h1>
+                {% else %}
+                {% for i in subs %}
+                    <div class="content-card">
+                        <div class="content-card-image">
+                            <a class="play-icon" href="/video?id={{ i.id }}">
+                                <svg id="play-icon" viewBox="0 0 32 32">
+                                    <g id="Layer_1" />
+                                    <g id="play_x5F_alt">
+                                        <path id="play-icon-path"
+                                            d="M16,0C7.164,0,0,7.164,0,16s7.164,16,16,16s16-7.164,16-16S24.836,0,16,0z M10,24V8l16.008,8L10,24z   "
+                                            style="fill:#ffffff;" />
+                                    </g>
+                                </svg>
+                            </a>
+                            <a href="/video?id={{ i.id }}"><img src="/{{ i.thumbnail }}" alt="" /></a>
+                        </div>
+                        <div class="content-card-title">
+                            <a href="/video?id={{ i.id }}">{{ i.title }}</a>
+                        </div>
+                        <div class="content-card-channel">
+                            <a>{{ i.user.name }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            {% elif request.path == "/user/" %}
+                {% if videos is None %}
+                <h1>No videos found</h1>
+                {% else %}
+                {% for i in videos %}
+                    <div class="content-card">
+                        <div class="content-card-image">
+                            <a class="play-icon" href="/video?id={{ i.id }}">
+                                <svg id="play-icon" viewBox="0 0 32 32">
+                                    <g id="Layer_1" />
+                                    <g id="play_x5F_alt">
+                                        <path id="play-icon-path"
+                                            d="M16,0C7.164,0,0,7.164,0,16s7.164,16,16,16s16-7.164,16-16S24.836,0,16,0z M10,24V8l16.008,8L10,24z   "
+                                            style="fill:#ffffff;" />
+                                    </g>
+                                </svg>
+                            </a>
+                            <a href="/video?id={{ i.id }}"><img src="/{{ i.thumbnail }}" alt="" /></a>
+                        </div>
+                        <div class="content-card-title">
+                            <a href="/video?id={{ i.id }}">{{ i.title }}</a>
+                        </div>
+                        <div class="content-card-channel">
+                            <a>{{ i.user.name }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+
+</html>

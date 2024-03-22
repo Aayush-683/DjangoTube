@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Website</title>
+    <link href="/static/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/">DjangoTube</a>
+        </div>
+        <div class="menu">
+            <a href="/">Home</a>
+         <a href="#" onclick="showDropDown()">Profile</a>
+            <div class="dropdown" id="dropdown" style="display: none;">
+                {% if request.session.username %}
+                <a href="/user?name={{ request.session.username }}">{{request.session.username}}'s Videos</a>
+                <a href="/upload">Upload Video</a>
+                <a href="/delete">Delete Video</a>
+                <a href="/logout">Logout</a>
+                {% else %}
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <form action="/upload/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1>Upload a video!</h1>
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
+            {{ form.as_p }}
+            <input type="submit" value="Proceed">
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        function showDropDown() {
+            dropdown = document.getElementById("dropdown");
+            if (dropdown.style.display != "none") {
+                dropdown.style.display = "none";
+            } else {
+                dropdown.style.display = "flex";
+            }
+        }
+    </script>
+
+    {% include 'footer.html' %}
+</body>
+
+</html>

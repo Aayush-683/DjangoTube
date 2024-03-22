@@ -1,0 +1,171 @@
+/* Reset some default styles for consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set background color and text color for the entire website */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    /* Light background color */
+    color: #333;
+    /* Set text color */
+}
+
+.content {
+    display: flex;
+    justify-content: start;
+    min-height: 100vh;
+}
+
+/* Container for video cards */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    padding: 20px;
+    width: 100%;
+    background-color: #252525;
+}
+
+/* Video card styles */
+.content-card {
+    width: 100%;
+    height: fit-content;
+    margin: 20px;
+    border: 1px solid #292929;
+    /* Adjust border color */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Adjust box shadow */
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.content-card-image {
+    position: relative;
+}
+
+.content-card-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Video card title styles */
+.content-card-title {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+.content-card-title a {
+    text-decoration: none;
+    color: #ffffff;
+    /* Adjust title color */
+    font-weight: bold;
+}
+
+/* Video card channel styles */
+.content-card-channel {
+    padding: 10px;
+    padding-top: 0;
+}
+
+.content-card-channel a {
+    text-decoration: none;
+    color: #bbbaba;
+    line-height: 1.6;
+}
+
+/* Additional styles for other elements if needed */
+.content-card-info {
+    display: flex;
+    width: 100%;
+    align-items: start;
+    flex-direction: column;
+}
+
+.content-card-details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.like-button {
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    color: #606060;
+}
+
+.like-button svg {
+    height: 20px;
+    width: 20px;
+}
+
+.like-button p {
+    line-height: 1.3;
+    margin-right: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.like-button:hover #likeicon {
+    fill: #FF0000 !important;
+}
+
+.subscribe-button {
+    /* Change to your desired subscribe button color */
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.subscribe-button:hover {
+    background: #FF5555;
+    /* Change to your desired hover color */
+}
+
+/* Style the video container to cover the entire area */
+#video-container {
+    width: 100%;
+    display: none;
+    height: 64vh;
+    /* Adjust the height as needed */
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 64vh;
+}
+
+/* Align the title and like button in the same line */
+.content-card-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Position the channel name and subscribe button below the title */
+.content-card-channel {
+    display: flex;
+    flex-direction: row;
+}
+
+.content-card-description {
+    padding: 10px;
+    padding-top: 0;
+    color: #909090;
+    line-height: 1.6;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Website</title>
+    <link href="/static/css/video.css" rel="stylesheet" />
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="content">
+        {% include 'sidebar.html' %}
+
+        <div class="container">
+            <div class="content-card">
+                <div class="content-card-details">
+                    <div class="thumbnail">
+                        <img src="/{{ video.thumbnail }}" alt="Video Thumbnail" />
+                    </div>
+                    <div id="video-container">
+                        <iframe width="100%" height="100%" src="/{{ video.video }}" frameborder="0" allow="autoplay *; fullscreen *"></iframe>
+                    </div>
+                    <div class="content-card-info">
+                        <div class="content-card-title">
+                            <a>{{ video.title }}</a>
+                            <!-- Add if condition for liked -->
+                            <button class="like-button" onclick="likevid()">
+                                <p>{{ likes }}</p>
+                                <svg height="512px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="512px"
+                                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g id="_x31_66_x2C__Heart_x2C__Love_x2C__Like_x2C__Twitter">
+                                        <g>
+                                            <path id="likeicon"
+                                                d="M365.4,59.628c60.56,0,109.6,49.03,109.6,109.47c0,109.47-109.6,171.8-219.06,281.271    C146.47,340.898,37,278.568,37,169.099c0-60.44,49.04-109.47,109.47-109.47c54.73,0,82.1,27.37,109.47,82.1    C283.3,86.999,310.67,59.628,365.4,59.628z"
+                                                style="fill: {% if liked %}#ff0000{% else %}#fff{% endif %}" />
+                                        </g>
+                                    </g>
+                                    <g id="Layer_1" />
+                                </svg>
+                            </button>
+                            <form id="like" action="/liked/" method="POST" style="display: none;">
+                                {% csrf_token %}
+                                <input type="hidden" name="videoId" value="{{ video.id }}">
+                            </form>
+                        </div>
+                        <div class="content-card-channel">
+                            <a>{{ video.user.name }}</a>
+                            <form id="sub" action="/subscriptions/" method="POST">
+                                <button class="subscribe-button" onclick="submitForm()" style="background: {% if subscribed %}#616161{% else %}#ff0000{% endif %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="channel" value="{{ video.user.name }}">
+                                    <p>Subscribe</p>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="content-card-description">
+                            <p>{{ video.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const video = document.querySelector('iframe');
+        const videocontainer = document.getElementById('video-container');
+        video.addEventListener('load', () => {
+            console.log('playing')
+            document.getElementsByClassName('thumbnail')[0].style.display = 'none';
+            videocontainer.style.display = "block";
+        });
+
+        const form = document.getElementById('sub');
+        function submitForm() {
+            var subbutton = document.getElementsByClassName('subscribe-button')[0];
+            if (subbutton.style.background == "#ff0000" || subbutton.style.background == "rgb(255, 0, 0)") {
+                subbutton.style.background = "#616161";
+            } else {
+                subbutton.style.background = "#ff0000";
+            }
+            form.submit();
+        }
+
+        function likevid() {
+            const like = document.getElementById('likeicon');
+            if (like.style.fill == "#fff" || like.style.fill == "rgb(255, 255, 255)") {
+                var likes = document.getElementsByClassName('like-button')[0].getElementsByTagName('p')[0];
+                likes.innerHTML = parseInt(likes.innerHTML) + 1;
+                like.style.fill = "#ff0000";
+            } else {
+                var likes = document.getElementsByClassName('like-button')[0].getElementsByTagName('p')[0];
+                likes.innerHTML = parseInt(likes.innerHTML) - 1;
+                like.style.fill = "#fff";
+            }
+            document.getElementById('like').submit();
+        }
+    </script>
+    {% include 'footer.html' %}
+</body>
+
+</html>

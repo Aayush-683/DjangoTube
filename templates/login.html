@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Website</title>
+    <link href="/static/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/">DjangoTube</a>
+        </div>
+        <div class="menu">
+            <a href="/">Home</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <form action="/authenticate/" method="POST">
+            {% csrf_token %}
+            <h1>{{ authtype }}</h1>
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
+            {{ form.as_p }}
+            <input type="submit" value="Proceed">
+            <input type="hidden" name="authtype" value="{{ authtype }}">
+            {% if authtype == "Login" %}
+            <p>Don't have an account? <a href="/register/">Register</a></p>
+            {% else %}
+            <p>Already have an account? <a href="/login/">Login</a></p>
+            {% endif %}
+        </form>
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+
+</html>
